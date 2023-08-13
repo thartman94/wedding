@@ -22,6 +22,7 @@
     "gatsby-plugin-sharp": "^5.11.0",
     "gatsby-plugin-styled-components": "^6.11.0",
     "gatsby-transformer-sharp": "^5.11.0",
+    "iframe-resizer-react": "^1.1.0",
     "react": "^18.2.0",
     "react-countdown": "^2.3.5",
     "react-dom": "^18.2.0",

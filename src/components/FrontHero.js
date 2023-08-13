@@ -2,10 +2,12 @@ import { StaticImage } from "gatsby-plugin-image";
 import * as React from "react";
 import Countdown from "react-countdown";
 import { styled } from "styled-components";
+import Button from "./Button";
 
 const Section = styled.section`
   position: relative;
-  height: 100vh;
+  height: 800px;
+  max-height: 100vh;
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -15,6 +17,7 @@ const Section = styled.section`
   color: white;
   font-family: "Lora";
   text-align: center;
+  gap: 0.5rem;
 `;
 
 const Border = styled.div`
@@ -51,6 +54,8 @@ const Title = styled.h1`
   line-height: 1.2;
   font-family: "Allura";
   font-weight: 300;
+  margin: 0;
+  margin-bottom: -1rem;
 
   @media only screen and (max-width: 640px) {
     font-size: 4rem;
@@ -59,32 +64,15 @@ const Title = styled.h1`
 `;
 
 const TimeUntil = styled.div`
-  font-size: 1rem;
-  margin-top: 0.5rem;
-`;
-
-const WaitForMore = styled.div`
-  font-size: 1rem;
-  margin-top: 0.5rem;
-  padding: 0 1rem;
-  @media only screen and (min-width: 640px) {
-    transform: translateY(-50%);
-    bottom: 20%;
-    font-size: 2rem;
-    position: absolute;
-  }
+  font-size: 0.75rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
 `;
 
 const Location = styled.a`
-  margin-top: -6rem;
-  font-size: 2rem;
+  font-size: 1rem;
   text-decoration: none;
   color: white;
-
-  @media only screen and (max-width: 640px) {
-    font-size: 1rem;
-    margin-top: -3rem;
-  }
 `;
 
 const LineBreak = styled.br`
@@ -96,7 +84,7 @@ const LineBreak = styled.br`
 const EVENT_DATE = new Date("May 19, 2024");
 
 const renderer = ({ days }) => {
-  return <TimeUntil>{days} days left</TimeUntil>;
+  return <TimeUntil>{days} DAYS LEFT</TimeUntil>;
 };
 
 const FrontHero = () => {
@@ -106,13 +94,18 @@ const FrontHero = () => {
         <StaticImage
           src="../images/hero.jpg"
           placeholder="blurred"
+          layout="fullWidth"
           objectFit="cover"
+          alt=""
           objectPosition="bottom"
           style={{ height: "100%" }}
         />
         <StaticImage
+          layout="fullWidth"
           src="../images/hero-mobile.jpg"
           placeholder="blurred"
+          alt=""
+          objectPosition="bottom"
           style={{ height: "100%" }}
         />
       </Background>
@@ -123,7 +116,7 @@ const FrontHero = () => {
         May 19, 2024 - Temecula, CA
       </Location>
       <Countdown date={EVENT_DATE} renderer={renderer}></Countdown>
-      <WaitForMore>More details coming... check back soon!</WaitForMore>
+      <Button href="#rsvp">RSVP</Button>
       <Border />
     </Section>
   );
