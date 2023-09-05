@@ -1,19 +1,30 @@
 import * as React from "react";
-import FrontHero from "../components/FrontHero";
-import RSVP from "../components/RSVP";
-import Section from "../components/Section";
-import Story from "../components/Story";
+import GlobalStyles from "../GlobalStyles";
+
+import Header from "../partials/Header";
+import Footer from "../partials/Footer";
+import FrontHero from "../partials/FrontHero";
+import Story from "../partials/Story";
+import Event from "../partials/Event";
+import Party from "../partials/Party";
+import Registry from "../partials/Registry";
+import RSVP from "../partials/RSVP";
 
 const IndexPage = () => {
   return (
-    <main>
-      <FrontHero />
-      <Story />
-      <Section title="The Event"></Section>
-      <Section title="Registry"></Section>
-      <Section title="Wedding Party"></Section>
-      <RSVP />
-    </main>
+    <>
+      <GlobalStyles />
+      <main>
+        <Header />
+        <FrontHero />
+        <Story />
+        <Event />
+        <Party />
+        <Registry />
+        <RSVP />
+        {/* <Footer /> */}
+      </main>
+    </>
   );
 };
 

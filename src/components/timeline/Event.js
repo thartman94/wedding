@@ -1,108 +1,40 @@
 import * as React from "react";
-import { styled } from "styled-components";
+import tw, { styled } from "twin.macro";
 
-const Wrapper = styled.div`
-  /* background-color: black; */
-  height: 100%;
-  display: flex;
-  position: relative;
-  --gap: 2rem;
+const Wrapper = styled.div(({ $flip }) => [
+  tw`h-full w-full items-start flex relative z-20`,
+  $flip && tw`flex-row-reverse`,
+]);
 
-  & > div {
-    flex-direction: column-reverse;
-    margin-bottom: var(--gap);
-  }
+const ImgWrapper = tw.div`w-1/2 flex flex-col items-center justify-center`;
+const Img = tw.img`w-3/5`;
 
-  &:nth-child(even) {
-    align-items: flex-end;
-    & > div {
-      flex-direction: column;
-      margin-bottom: 0;
-      margin-top: var(--gap);
-      &:after {
-        top: 50%;
-      }
-      & > div {
-        border-bottom: none;
-        border-top: 2px solid var(--secondary-color);
-      }
-    }
-  }
+const DetailsWrapper = styled.div(({ $flip }) => [
+  tw`p-4 w-1/2 pl-8 flex flex-col items-start pt-20 text-left relative 
+before:([content: ''] bg-primary absolute w-4 aspect-square rounded-full top-[6rem] right-full mr-[-0.5rem])
+after:([content: ''] bg-[#f2f6f7] absolute w-[0.5rem] aspect-square rounded-full top-[6.25rem] right-full mr-[-0.25rem])`,
 
-  &:after {
-    content: "";
-    left: 50%;
-    top: 50%;
-    border: 0.2rem solid #bdc2c9;
-    background-color: white;
-    z-index: 2;
-    height: 1rem;
-    width: 1rem;
-    border-radius: 50%;
-    position: absolute;
-    transform: translate(-50%, -50%);
-  }
-`;
+  $flip &&
+    tw`pr-8 pl-4 text-right items-end before:(right-0 mr-[-0.5rem]) after:(right-0 mr-[-0.25rem])`,
+]);
 
-const Container = styled.div`
-  height: calc(50% - var(--gap));
-  width: 300px;
-  display: flex;
-  box-shadow: var(--shadow-lg);
-  border: 2px solid var(--secondary-color);
-  &:after {
-    content: "";
-    width: 0.2rem;
-    height: 50%;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    background-color: #bdc2c9;
-    z-index: -1;
-  }
-`;
+const Date = tw.span`text-xl mb-2`;
+const Subtitle = tw.span`text-secondary text-sm mb-12`;
+const Title = tw.span`font-allura text-7xl mb-12`;
+const Content = tw.p`text-xl leading-loose text-sm max-w-[50rem]`;
 
-const Image = styled.img`
-  object-fit: cover;
-  object-position: bottom;
-  height: 100%;
-  width: 100%;
-`;
-
-const Content = styled.div`
-  padding: 1rem;
-  text-align: center;
-  * {
-    margin: 0;
-  }
-  background-color: white;
-  position: relative;
-  border-bottom: 2px solid var(--secondary-color);
-`;
-
-const Title = styled.p`
-  font-family: "Allura";
-  font-size: 2rem;
-`;
-
-const Subtitle = styled.p`
-  color: var(--secondary-color);
-  font-size: 0.8rem;
-`;
-
-const Event = ({ title, location, date, image, props }) => {
+const Event = ({ title, location, date, image, props, content, flip }) => {
   return (
-    <Wrapper {...props}>
-      <Container>
-        <Image src={`/images/${image}`} />
-        <Content>
-          <Title>{title}</Title>
-          <Subtitle>
-            {location} - {date}
-          </Subtitle>
-        </Content>
-      </Container>
+    <Wrapper {...props} $flip={flip}>
+      <ImgWrapper>
+        <Img src={`/images/${image}`} className="image" />
+      </ImgWrapper>
+      <DetailsWrapper $flip={flip}>
+        <Date>{date}</Date>
+        <Subtitle>{location}</Subtitle>
+        <Title>{title}</Title>
+        <Content>{content}</Content>
+      </DetailsWrapper>
     </Wrapper>
   );
 };

@@ -1,35 +1,16 @@
 import * as React from "react";
-import { styled } from "styled-components";
+import tw from "twin.macro";
 import Event from "./Event";
 
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  position: relative;
-  height: 65rem;
-  padding: 2rem 0;
-  &:after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 4px;
-    background-color: #bdc2c9;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  max-width: 100%;
-  overflow: auto visible;
-`;
+const Component = tw.div`flex flex-col relative gap-12 after:([content: ''] z-10 rounded-full bg-primary h-full absolute w-1 top-0 left-0 right-0 mx-auto)`;
 
 const Timeline = ({ events }) => {
   return (
-    <Wrapper>
-      {events.map((event, i) => {
-        return <Event key={i} {...event} />;
-      })}
-    </Wrapper>
+    <Component>
+      {events.map((event, i) => (
+        <Event flip={i % 2 === 1} key={event.title} {...event} />
+      ))}
+    </Component>
   );
 };
 
