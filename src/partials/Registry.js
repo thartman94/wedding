@@ -17,16 +17,16 @@ const links = [
   },
 ];
 
-const Wrapper = tw.div`flex flex-col items-center justify-center self-center my-20`;
+const Wrapper = tw.div`flex flex-col items-center justify-center self-center my-20 px-4`;
 const Icon = tw.div`w-32 [svg]:fill-primary`;
-const Text = tw.p`text-center text-xl leading-loose font-light max-w-[50rem] py-20`;
+const Text = tw.p`text-center text-base! sm:text-lg! lg:text-xl! leading-loose font-light max-w-[50rem] py-20`;
 
 const Links = tw.div`flex flex-wrap items-center gap-6 justify-center self-center w-full`;
-const Link = tw.a`text-center w-[14rem] bg-secondary text-white uppercase font-bold leading-loose font-light py-3 duration-500 border-2 border-secondary hover:(bg-transparent text-secondary)`;
+const Link = tw.a`text-center w-full md:w-[14rem] bg-secondary text-white uppercase leading-loose font-light py-3 duration-500 border-2 border-secondary hover:(bg-transparent text-secondary)`;
 
 const Registry = () => {
   return (
-    <Section title="Registry">
+    <Section title="Registry" id="registry">
       <Wrapper>
         <Icon>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

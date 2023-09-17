@@ -102,9 +102,9 @@ const data = [
 
 const navItems = ["Groomsmen", "Bridesmaids", "Ushers"];
 
-const NavBar = tw.div`flex w-full relative items-center justify-center gap-2 border-b-2 border-gray-200 pb-4 mb-4 mt-32`;
+const NavBar = tw.div`hidden md:flex w-full relative items-center justify-center gap-2 border-b-2 border-gray-200 pb-4 mb-4 mt-32 mx-auto max-w-[50rem]`;
 const NavButton = styled.button(({ $isActive }) => [
-  tw`text-2xl w-1/3 capitalize font-light px-4 text-gray-400 hover:text-primary transition-colors duration-200`,
+  tw`text-xl xl:text-2xl w-1/3 capitalize font-light px-4 text-gray-400 hover:text-primary transition-colors duration-200`,
   $isActive && tw`text-primary`,
 ]);
 
@@ -115,11 +115,13 @@ const Underline = styled.div(({ curr }) => [
   `,
 ]);
 
+const Status = tw.div`text-2xl md:hidden text-center font-light relative flex justify-center w-full`;
+
 const WeddingParty = () => {
   const [current, setCurrent] = React.useState(1);
 
   return (
-    <Section title="Wedding Party" id="party">
+    <Section title="Wedding Party" id="party" noPadding>
       <NavBar>
         {navItems.map((item, i) => (
           <NavButton
@@ -132,6 +134,7 @@ const WeddingParty = () => {
         ))}
         <Underline curr={current} />
       </NavBar>
+      <Status>{navItems[current]}</Status>
       <PartySlider current={current} setCurrent={setCurrent} data={data} />
     </Section>
   );

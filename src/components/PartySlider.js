@@ -6,23 +6,29 @@ import useEmblaCarousel from "embla-carousel-react";
 const Embla = tw.div``;
 const Viewport = tw.div`flex overflow-hidden`;
 const Container = tw.div`flex w-full`;
-const Slide = tw.div`flex flex-wrap justify-evenly gap-4 my-24 basis-full grow-0 shrink-0`;
+const Slide = tw.div`grid grid-cols-2 md:(flex flex-wrap justify-center) gap-4 my-8 sm:my-24 basis-full grow-0 shrink-0 gap-y-12`;
 
-const Person = tw.div`flex flex-col gap-6 items-center`;
+const Person = tw.div`flex flex-col gap-6 items-center px-4 relative `;
 const Img = tw.div`w-full aspect-square rounded-full overflow-hidden shadow-lg relative`;
-const Name = tw.span`text-5xl text-center w-min font-allura mt-4`;
+const Name = tw.span`text-4xl sm:(text-5xl mt-4) text-center w-min font-allura `;
 
 const Slider = ({ current, setCurrent, data }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
+    loop: true,
     align: "start",
     slidesToScroll: 1,
     startIndex: 1,
+    breakpoints: {
+      "(min-width: 768px)": { loop: true },
+    },
   });
 
-  const onSelect = React.useCallback((emblaApi) => {
-    setCurrent(emblaApi.selectedScrollSnap());
-  }, []);
+  const onSelect = React.useCallback(
+    (emblaApi) => {
+      setCurrent(emblaApi.selectedScrollSnap());
+    },
+    [setCurrent]
+  );
 
   const scrollTo = React.useCallback(
     (index) => emblaApi && emblaApi.scrollTo(index),
@@ -36,7 +42,7 @@ const Slider = ({ current, setCurrent, data }) => {
     }
     scrollTo(current);
     emblaApi.on("select", onSelect);
-  }, [current, emblaApi]);
+  }, [current, emblaApi, onSelect, scrollTo]);
 
   return (
     <Embla>

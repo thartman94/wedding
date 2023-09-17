@@ -1,5 +1,8 @@
 import * as React from "react";
 import Section from "../components/Section";
+import tw from "twin.macro";
+
+const Div = tw.div`w-full`;
 
 const RSVP = () => {
   const ref = React.useRef(null);
@@ -14,8 +17,8 @@ const RSVP = () => {
     }
   }, []);
   return (
-    <Section title="RSVP" id="rsvp">
-      <div ref={ref}></div>
+    <Section title="RSVP" noPadding id="rsvp">
+      <Div ref={ref}></Div>
     </Section>
   );
 };

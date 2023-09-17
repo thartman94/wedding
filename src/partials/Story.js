@@ -1,6 +1,7 @@
 import * as React from "react";
 import Section from "../components/Section";
 import Timeline from "../components/timeline/Timeline";
+import tw from "twin.macro";
 
 const events = [
   {
@@ -54,11 +55,13 @@ const events = [
   },
 ];
 
+const StyledSection = tw(Section)`hidden xl:flex`;
+
 const Story = () => {
   return (
-    <Section title="Our Story" noPadding>
+    <StyledSection title="Our Story" noPadding>
       <Timeline events={events} />
-    </Section>
+    </StyledSection>
   );
 };
 
