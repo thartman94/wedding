@@ -28,7 +28,7 @@ const info = [
   {
     icon: <PiChurchDuotone />,
     title: "Ceremony",
-    desc: "5:00 PM",
+    desc: "4:30 PM",
   },
   {
     icon: <GiPartyPopper />,
